@@ -1,0 +1,15 @@
+[Unit]
+Description=Lighter orderbook snapshot service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/lighter-orderbook-snapshot
+EnvironmentFile=/opt/lighter-orderbook-snapshot/.env
+ExecStart=/usr/bin/node /opt/lighter-orderbook-snapshot/dist/index.js
+Restart=always
+RestartSec=3
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target
