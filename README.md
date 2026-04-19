@@ -80,6 +80,21 @@ Inspect depth bands:
 sqlite3 ./data/snapshots.db "SELECT market, ts_ms, depth_bands_json FROM snapshots ORDER BY id DESC LIMIT 5;"
 ```
 
+## Jupyter Analysis
+
+Analyze XAU depth volatility from the stored snapshots:
+
+```bash
+python3 -m pip install -r requirements-notebook.txt
+python3 -m jupyter notebook notebooks/xau_depth_volatility.ipynb
+```
+
+The notebook:
+- loads `XAU` rows from `data/snapshots.db`
+- flattens `depth_bands_json` for bands `0.5, 1, 1.5, 2, 3, 4, 5`
+- computes 1-second depth changes, returns, rolling volatility, z-scores, and imbalance
+- plots total depth, rolling depth volatility, heatmaps, spread context, and spike tables
+
 ## PM2 Deployment
 
 ```bash
